@@ -3,7 +3,7 @@ function [R,P,q] = ROZKLAD(A,s)
   if m != n 
     disp("macierz nie jest kwadratowa!");
   end 
-  L = eye(n)
+  L = eye(n);
 
   %algorytm dla zamiany w kolumnie % 
   
@@ -21,7 +21,6 @@ function [R,P,q] = ROZKLAD(A,s)
     A(k,1:n) = temp2;
     A(p,1:n) = temp1;
  
-    disp("powieinien zaminic")
     temp3 = P(k)
     P(k) = P(p);
     P(p) = temp3;
@@ -36,11 +35,11 @@ function [R,P,q] = ROZKLAD(A,s)
        %a_{ik} = a_{ik}/a_{ii}
        A(i,k) = A(i,k)/A(k,k)
        
-       disp("AIK")
+       disp("AIK");
     end
     for j=k+1:n % modyfikacja podmacierzy  A_{22} = A_{22} - l_{21}u_{12}
       for i=k+1:n 
-         A(i,j) -= A(i,k)*A(k,j)
+         A(i,j) -= A(i,k)*A(k,j);
       end
     end
   end

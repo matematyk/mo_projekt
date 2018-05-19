@@ -1,6 +1,6 @@
 function [x] = ROZWIAZ(R, p, q, b)
 %algorytm dla zamiany w kolumnie %
-P = 1:N; % tu zapamiętujemy wykonane permutacje Wektor
+P = 1:N; % tu zapamiętujemy wykonane permutacje
 for k=1:N-1
 	%a(i,:)
 	w wektorze A(k:N,k) znajdź element główny a_{pk};
