@@ -1,4 +1,4 @@
-function [L,U, p, q] = ROZKLAD(A,s)
+function [L,U, P, q] = ROZKLAD(A,s)
   
   if s == 1
     [L,U] = LU_BEZ_PIVOTINGU(A);

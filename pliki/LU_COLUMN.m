@@ -5,14 +5,13 @@ function [L,U,PERM] = LU_COLUMN(A)
   end 
   L = eye(n);
 
-  %algorytm dla zamiany w kolumnie % 
   
    P = 1:n; % tu zapamiętujemy wykonane permutacje Wektor
     for k=1:n-1
     %w wektorze A(k:N,k) znajdź element główny a_{pk};
     [pivot,p] = max(abs((A(k:n,k))));
     
-    p = p + k -1;
+    p = p+k-1;
     temp1 = A(k,1:n);
     temp2 = A(p,1:n);
     
@@ -39,8 +38,8 @@ function [L,U,PERM] = LU_COLUMN(A)
       end
     end
   end
-  PERM = permutacje(P)
-  U = A
+  PERM = permutacje(P);
+  U = A;
     
     
     

@@ -1,5 +1,5 @@
 function [R,P,q] = ROZKLAD(A,s)
-  [m,n] = size(A)
+  [m,n] = size(A);
   if m != n 
     disp("macierz nie jest kwadratowa!");
   end 
@@ -11,9 +11,9 @@ function [R,P,q] = ROZKLAD(A,s)
     for k=1:n-1
     %a(i,:)
     %w wektorze A(k:N,k) znajdź element główny a_{pk};
-    [pivot,p] = max(A(k:n,k));
+    [pivot,p] = max(abs((A(k:n,k))));
     
-    p = p + k -1
+    p = p + k -1;
     %zamień ze sobą wiersze
     temp1 = A(k,1:n);
     temp2 = A(p,1:n);
@@ -21,7 +21,7 @@ function [R,P,q] = ROZKLAD(A,s)
     A(k,1:n) = temp2;
     A(p,1:n) = temp1;
  
-    temp3 = P(k)
+    temp3 = P(k);
     P(k) = P(p);
     P(p) = temp3;
    
@@ -33,7 +33,7 @@ function [R,P,q] = ROZKLAD(A,s)
     
     for i=k+1:n % wyznaczenie  k-tej kolumny  L 
        %a_{ik} = a_{ik}/a_{ii}
-       A(i,k) = A(i,k)/A(k,k)
+       A(i,k) = A(i,k)/A(k,k);
        
        disp("AIK");
     end
@@ -43,6 +43,6 @@ function [R,P,q] = ROZKLAD(A,s)
       end
     end
   end
-  P
+  R = A
     
 end

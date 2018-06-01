@@ -1,4 +1,4 @@
-function [R,P,q] = ROZKLAD2(A,s)
+function [R,P,q] = LU_BEZ_PIVOTINGU(A,s)
   n = size(A); 
     
   for k=1:n-1
