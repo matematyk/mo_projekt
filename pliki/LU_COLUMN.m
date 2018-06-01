@@ -1,4 +1,4 @@
-function [L,U,p] = LU_COLUMN(A)
+function [L,U,PERM] = LU_COLUMN(A)
   [m,n] = size(A);
   if m != n 
     disp("macierz nie jest kwadratowa!");
@@ -9,7 +9,6 @@ function [L,U,p] = LU_COLUMN(A)
   
    P = 1:n; % tu zapamiętujemy wykonane permutacje Wektor
     for k=1:n-1
-    %a(i,:)
     %w wektorze A(k:N,k) znajdź element główny a_{pk};
     [pivot,p] = max(abs((A(k:n,k))));
     
@@ -31,8 +30,6 @@ function [L,U,p] = LU_COLUMN(A)
     % kontunuuj tak jak w algorytmie bez wyboru 
     
     for i=k+1:n % wyznaczenie  k-tej kolumny  L 
-       %a_{ik} = a_{ik}/a_{ii}
-       %A(i,k) = A(i,k)/A(k,k);
        L(i,k) = A(i,k)/A(k,k);
        disp("AIK");
     end
@@ -42,6 +39,9 @@ function [L,U,p] = LU_COLUMN(A)
       end
     end
   end
+  PERM = permutacje(P)
   U = A
+    
+    
     
 end
