@@ -5,6 +5,5 @@ function P = permutacje(wektor)
     for k=1:s
       P(k,wektor(k)) = 1;
     end
- 
- 
+
 endfunction

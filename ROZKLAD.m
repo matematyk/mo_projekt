@@ -1,5 +1,5 @@
 function [R,P,q] = ROZKLAD(A,s)
-  [m,n] = size(A);
+  n = size (A,1) ;
   if m != n 
     disp("macierz nie jest kwadratowa!");
   end 
