@@ -1,45 +1,33 @@
-function [L,U,P] = LU_COLUMN(A)
-  [m,n] = size(A);
-  if m != n 
-    disp("macierz nie jest kwadratowa!");
-  end 
-  L = eye(n);
-
-  
-   P = 1:n; % tworzymy wektor permutacji
-    for k=1:n-1
-    %w wektorze A(k:N,k) znajdź element główny;
-    [pivot,p] = max(abs((A(k:n,k))));
-    
-    p = p+k-1;
-    temp1 = A(k,1:n);
-    temp2 = A(p,1:n);
-    
-    A(k,1:n) = temp2;
-    A(p,1:n) = temp1;
- 
-    temp3 = P(k);
-    P(k) = P(p);
-    P(p) = temp3;
-   
-      if  A(k,k) == 0
-        disp("STOP: macierz osobliwa!")
-      end
-    
-    % kontunuuj tak jak w algorytmie bez wyboru 
-    % wyznaczenie  k-tej kolumny  L
-
-    % modyfikacja podmacierzy
-    for i=k+1:n
-          L(i,k) = A(i,k)/A(k,k);
-      for j=1:n
-         A(i,j) -= L(i,k)*A(k,j);
-      end
+function [L, U, P] = LU_COLUMN(A)
+    % badam wymiar 
+    n = size(A,1);
+    % kopiuje macierz
+    Ak = A;
+    %tworze macierz z zerami na przekatnej
+    L = eye(n);
+    U = zeros(n);
+    % tworze permutacje identycznosciowa
+    P = eye(n);
+    % petla eliminacji
+    for k = 1:n-1
+        % szukam elementu co do normy nawiekszego
+        [~,r] = max(abs(Ak(k:end,k)));
+        % okreslam pozycje
+        r = n-(n-k+1)+r;
+        % zamieniam z obecnym ktym wierszem
+        Ak([k r],:) = Ak([r k],:);
+        % zamieniam permutacje
+        P([k r],:) = P([r k],:);
+        
+        for i = k+1:n
+        % eliminuje wspolczynniki
+            L(i,k) = Ak(i,k) / Ak(k,k);
+            for j = 1:n
+                U(k,j) = Ak(k,j);
+                Ak(i,j) = Ak(i,j) - L(i,k)*Ak(k,j);
+            end
+        
+        end
     end
-  end
-  P = permutacje(P);
-  U = A;
-    
-    
-    
-end
+    U(:,end) = Ak(:,end);
+return
